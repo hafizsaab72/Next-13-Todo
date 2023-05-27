@@ -5,11 +5,18 @@ type TodoItemProps = {
   title: string;
   complete: boolean;
   toggleTodo: (id: string, complete: boolean) => void;
+  deleteTodo: (id: string) => void;
 };
 
-export function TodoItem({ id, title, complete, toggleTodo }: TodoItemProps) {
+export function TodoItem({
+  id,
+  title,
+  complete,
+  toggleTodo,
+  deleteTodo,
+}: TodoItemProps) {
   return (
-    <li className="flex gap-1 items-center">
+    <li className="flex gap-1 items-center mb-5">
       <input
         id={id}
         type="checkbox"
@@ -23,6 +30,12 @@ export function TodoItem({ id, title, complete, toggleTodo }: TodoItemProps) {
       >
         {title}
       </label>
+      <button
+        className="rounded text-red bg-red-500 px-2 py-0 ml-10"
+        onClick={() => deleteTodo(id)}
+      >
+        x
+      </button>
     </li>
   );
 }
